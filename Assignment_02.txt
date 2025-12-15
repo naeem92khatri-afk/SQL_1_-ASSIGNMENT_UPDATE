@@ -1,0 +1,86 @@
+-- Creating table by the name of Company_info 1st table
+CREATE TABLE Company_info(
+  Empl_id INT PRIMARY KEY,
+  name VARCHAR(60),
+  Department VARCHAR(60),
+  Location VARCHAR(50),
+  Rating VARCHAR(10),
+  Experience Int
+);
+
+-- Inserting values in the table
+  INSERT INTO Company_info VALUES
+(12345,'Vijay Parekh','HR','Mumbai','A',3),
+(98700,'Ramesh Rathva','SALES','Punjab','B',6),
+(90000,'Kedar Aapte','HR','J&K','C',10),
+(40000,'Alpesh Gavle','PROD','HP','A',2),
+(50000,'Rizwan Dal','SALES','NEW DELHI','A',15);
+
+-- Creating table by the name of Credit Balance 2nd table
+CREATE TABLE Credit_info(
+  cl_tid INT PRIMARY KEY,
+  name VARCHAR(60),
+  Type VARCHAR(60),
+  Area VARCHAR(50),
+  Balance INT,
+  Fraud_ind Int
+);
+
+-- Inserting values in the second table
+  INSERT INTO Credit_info VALUES
+(12345,'Vijay Parekh','Credit Cards','Mumbai',10000,0),
+(98700,'Ramesh Rathva','Credit Cards','Punjab',900000,1),
+(90000,'Kedar Aapte','Debit Cards','J&K',700000,0),
+(40000,'Alpesh Gavle','Credit Cards','HP',800000,0),
+(50000,'Rizwan Dal','Credit Cards','NEW DELHI',9870999,0);
+
+--Display Recordes from Bothe the tables.....
+
+SELECT *
+FROM Company_info;
+
+SELECT * 
+FROM Credit_info;
+
+
+-- Use Of Logigcal Operator (AND, OR, NOT)
+-- AND
+SELECT *
+FROM company_info
+WHERE upper(Department) ="HR"  AND upper(Rating) ="A";
+
+--OR
+SELECT *
+FROM company_info
+WHERE upper(Department) ="HR"  OR upper(Rating) ="A";
+
+-- NOT
+SELECT *
+FROM company_info
+WHERE NOT upper(Department) ="HR";
+
+-- ARITHMATIC OPERATIONS
+SELECT
+        SUM(experience)    as  Total_Exp, 
+        COUNT(*)           as  Total_Rows,
+        AVG(experience)    as  Average_Exp, 
+        MAX(experience)    as  Max_Exp,
+        MIN(experience)    as  Min_Exp
+FROM company_info;
+
+-- ORDER BY  Close
+
+SELECT * FROM company_info
+ORDER BY department ASC;
+
+SELECT * FROM company_info
+ORDER BY department ASC, experience DESC;
+
+SELECT * FROM Credit_info
+WHERE Balance BETWEEN 10000 AND 800000;
+
+SELECT * FROM Credit_info
+WHERE Area IN ('Mumbai' , 'J&K' , 'HP');
+
+SELECT * FROM Credit_info
+WHERE Area NOT IN ('Mumbai' , 'J&K' , 'HP');
